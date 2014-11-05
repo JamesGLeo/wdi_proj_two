@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Games Project</title>
+  <link rel="stylesheet" href="/css/normalize.css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="/css/styles.css" media="screen" title="no title" charset="utf-8">
+  <script src="scripts/jquery.min.js" type="text/javascript"></script>
+  <script src="scripts/jquery.js" type="text/javascript"></script>
+  <script src="scripts/scripts.js" type="text/javascript"></script>
+</head>
+<body>
+
+  <% if current_user %>
+    <%= erb :'/partials/_user_nav'%>
+  <% else %>
+    <%= erb :'/partials/_non_user_nav'%>
+  <% end %>  
+  
+  <div class="container">
+    <%= yield %>
+  </div>
+  
+</body>
+</html>
