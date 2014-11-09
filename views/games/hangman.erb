@@ -57,7 +57,7 @@ function newGame() {
     $(span).html(abc[i]); 
     $(span).css('cursor','pointer');
     $(span).on('click', function(e) {
-      getLetter();
+       getLetter();
     });
     $(frag).append(span); 
   }; 
@@ -65,7 +65,15 @@ function newGame() {
 }
 
 function getLetter() { 
-  alert('You selected ' + this.html()); 
+  checkLetter($(this).html);
+  $(this).html('&nbsp;');
+  $(this).css('cursor','default');
+  $(this).on('click', null);
+}
+
+function checkLetter(letter) {
+    debugger;
+  // body...
 }
 
 function resetScore() {
