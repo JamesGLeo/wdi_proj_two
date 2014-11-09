@@ -1,0 +1,70 @@
+<h1>HANGMAN</h1>
+
+<canvas id="board" width="200" height="200"></canvas>
+<div id="play">New Game</div> 
+<div id="clear">Clear Score</div>
+<p id="word"></p>
+<div id="letters"></div>
+<div class="random" id="<%= @word %>"></div>
+
+
+<script charset="utf-8">
+var $canvas;
+var context;
+
+
+
+var guessWord = $('guessWord');
+var letters = $('letters');
+var wordToGuess;
+var wordLength;
+var badGuesses;
+var correctGuesses;
+
+
+$(function(){
+  $canvas = $('#board')
+  context = $canvas[0].getContext('2d');
+
+  $('#play').on('click', function(e){
+    newGame();
+  })
+
+  $('#clear').on('click', function(e){
+    resetScore();
+  })
+})
+
+function newGame() {
+  var placeholders = '';
+    var frag = document.createDocumentFragment(),
+    abc = ['A','B','C','D','E','F','G','H','I','J','K','L','M', 'N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+    badGuesses = 0;
+    correctGuesses = 0;
+    wordToGuess = $("div.random")[0].id;
+    wordLength = wordToGuess.length;
+    for (var i = 0; i < wordLength; i++) {
+      placeholders += ' __';
+    };
+    word.innerHTML = placeholders;
+
+    $("letters").innerHTML = ''; 
+    for (i = 0; i < 26; i++) { 
+      var div = document.createElement('div'); 
+      div.style.cursor = 'pointer'; 
+      div.innerHTML = abc[i]; 
+      div.on('click') = getLetter; 
+      $("frag").append(div); 
+    } 
+    $("letters").append(frag); 
+}
+
+function getLetter() { 
+  alert('You selected ' + this.innerHTML); 
+}
+
+function resetScore() {
+  alert('Score has been reset');
+}
+
+</script>

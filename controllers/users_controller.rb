@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   get '/profile' do
     if session[:current_user]
       @user = User.find(session[:current_user])
+      binding.pry
       erb :'users/show'
     else
       redirect '/'
