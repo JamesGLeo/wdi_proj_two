@@ -1,8 +1,8 @@
-<h1>HANGMAN.</h1>
+<h1>HANGMAN</h1>
 
 <canvas id="board" width="200" height="200"></canvas>
-<div id="play">New Game</div> 
-<div id="clear">Clear Score</div>
+<button type="button" id="play">New Game</button> 
+<button type="button" id="clear">Clear Score</button>
 <p id="word"></p>
 <div id="letters"></div>
 <div class="random" id="<%= @word %>"></div>
@@ -11,8 +11,6 @@
 <script charset="utf-8">
 var $canvas;
 var context;
-
-
 
 var letters = $('#letters');
 var word = $('#word');
@@ -46,35 +44,95 @@ function newGame() {
   wordLength = wordToGuess.length;
  
   for (var i = 0; i < wordLength; i++) {
-    placeholders += ' __';
+    placeholders += '_';
   };
  
   $(word).html(placeholders);
-
   $(letters).html('');
+  
+  var span;
   for (i = 0; i < 26; i++) { 
-    var span = $(document.createElement('span')); 
+    span = $(document.createElement('span')); 
     $(span).html(abc[i]); 
     $(span).css('cursor','pointer');
     $(span).on('click', function(e) {
-       getLetter();
+      getLetter($(this));
     });
-    $(frag).append(span); 
+    $(frag).append(span);
   }; 
   $(letters).append(frag); 
 }
 
-function getLetter() { 
-  checkLetter($(this).html);
-  $(this).html('&nbsp;');
-  $(this).css('cursor','default');
-  $(this).on('click', null);
+function getLetter(selectedLetter) {
+  checkLetter(selectedLetter.html());
+  selectedLetter.html('&nbsp;');
+  selectedLetter.css('cursor','default');
+  selectedLetter.on('click', null);
 }
 
 function checkLetter(letter) {
-    debugger;
-  // body...
+  var placeholders = $(word).html();
+
+  wrongGuess = true;
+  placeholders = placeholders.split('');
+
+  for (var i = 0; i < wordLength; i++) {
+    if(wordToGuess.charAt(i) === letter.toLowerCase()) {
+      placeholders[i] = letter;
+      wrongGuess = false;
+      correctGuesses+=1;
+      if (correctGuesses == wordLength) {
+        drawCanvas();
+      }
+    }
+  }
+
+  if(wrongGuess) {
+    badGuesses+=1;
+    drawCanvas();
+  };
+
+  $(word).html(placeholders.join(''));
 }
+
+function drawCanvas() {
+
+  if(correctGuesses == wordLength) {
+    letters.html('');
+    $("h1").html("Good Job! You win.");
+    showResult();
+  }
+  else if(badGuesses == 1) {
+    $("h1").html("That's 1 guess.");
+  } 
+  else if(badGuesses == 2) {
+    $("h1").html("That's 2 guess.");
+  } 
+  else if(badGuesses == 3) {
+    $("h1").html("That's 3 guess.");
+  } 
+  else if(badGuesses == 4) {
+    $("h1").html("That's 4 guess.");
+  } 
+  else if(badGuesses == 5) {
+    letters.html('');
+    $("h1").html("Sorry. Better luck next time");
+    showResult();
+  };
+};
+
+function showResult() {
+  var placeholders = $(word).html();
+  placeholders = placeholders.split('');
+  for (var i = 0; i < wordLength; i++) {
+    if (placeholders[i] == '_') {
+      placeholders[i] = '<span style="color:red">' + wordToGuess.charAt(i).toUpperCase() +'</span>';
+    };
+  };
+  $(word).html(placeholders.join(''));
+}; 
+
+
 
 function resetScore() {
   alert('Score has been reset');

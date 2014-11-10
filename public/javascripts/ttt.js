@@ -1,28 +1,3 @@
-<center>
-    <h1> Tic Tac Toe </h1>
-    <div id="button_wrapper">
-        <button type="submit" id="submitter">New Game</button>
-    </div>
-    <div class="wrapper">
-        <div class="flip-container">
-            <div class="box flipper"><div id="1"></div></div>
-            <div class="box flipper"><div id="2"></div></div>
-            <div class="box flipper"><div id="3"></div></div>
-        </div>
-        <div class="flip-container">
-            <div class="box flipper"><div id="4"></div></div>
-            <div class="box flipper"><div id="5"></div></div>
-            <div class="box flipper"><div id="6"></div></div>
-        </div>
-        <div class="flip-container">
-            <div class="box flipper"><div id="7"></div></div>
-            <div class="box flipper"><div id="8"></div></div>
-            <div class="box flipper"><div id="9"></div></div>
-        </div>
-    </div>
-</center>
-
-<script charset="utf">
 $(function(){
 
     function Board(){
@@ -88,7 +63,7 @@ $(function(){
         this.gameOver = function(){
             var that = this;
             if (this.determineWinner() !== undefined){
-                setTimeout(function(){ alert(that.drawMark(that.determineWinner() + " wins!")) }, 100);
+                setTimeout(function(){ alert("The winner is " + that.drawMark(that.determineWinner())) }, 100);
             }
             if (this.turnsLeft() == 0){
                 alert("Sorry, no more turns!");
@@ -156,4 +131,3 @@ $(function(){
     });
 
 });
-</script>

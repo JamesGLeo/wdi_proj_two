@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   get '/profile' do
+    authenticate!
     if session[:current_user]
       @user = User.find(session[:current_user])
       binding.pry

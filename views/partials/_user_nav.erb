@@ -5,12 +5,17 @@
   </form>
 
   <form action="/games/hangman">
-    <input type="submit" value="Play Hangman">
+    <input type="submit" value="One Player Game: Hangman">
   </form>
   
-  <form action="/sessions" method="post">
+  <form action="/games/ttt">
+    <input type="submit" value="Two Player Game: Tic Tac Toe">
+  </form>
+  
+
+  <form action="/sessions/logout" method="post">
     <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Log Out">
+    <input type="submit" value="Quit">
   </form>
 
 </div>

@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   get '/hangman' do
+    authenticate!
     word_bank = []
     words = File.open("./wordlist.txt")
     words.each_line { |line|
@@ -8,5 +9,10 @@ class GamesController < ApplicationController
 
     @word = word_bank.sample
     erb :'games/hangman'
+  end
+
+  get '/ttt' do
+    authenticate!
+    erb :'games/ttt'
   end
 end

@@ -1,0 +1,70 @@
+
+
+/*===================================*/
+/* Tic Tac Toe                       */
+/*===================================*/
+
+.wrapper{
+    width: 562px;
+    height:562px;
+    font-size: 82px;
+    overflow: hidden;
+    background: #eee;
+}
+
+#button_wrapper{
+    margin-bottom: 10px;
+}
+
+.box > div{
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
+.box{
+    height: 100%;
+    width: 185px;
+    border: 1px dotted black;
+    display: table-cell;
+}
+
+.box:hover{
+    background: #6699FF;
+    cursor: pointer;
+}
+
+.opened{
+    background: #6699FF;
+}
+
+.opened > div{
+    font-weight: bold;
+    color: red;
+}
+
+/* flipping */
+.flip-container {
+    perspective: 1000;
+    transform-style: preserve-3d;
+    height: 187px;
+    display: table;
+    -webkit-transform-style: preserve-3d;
+    -webkit-perspective: 1000px;
+}
+
+.flip{
+    transform: rotateY(180deg);
+    background: #eee;
+    -webkit-transform: rotateY(180deg);
+}
+
+.flipper {
+    transition: 0.6s;
+    -webkit-transition: -webkit-transform 0.6s;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    position: relative;
+}
